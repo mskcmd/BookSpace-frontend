@@ -32,7 +32,7 @@ export const BookCard = ({ book, onDelete }: BookCardProps) => {
         {!showFullDescription && book.description.length > 100 && (
           <Button
             color="primary"
-            size="xs"
+            // size="xs"
             onPress={toggleDescription}
             className="text-xs p-0 underline"
           >
