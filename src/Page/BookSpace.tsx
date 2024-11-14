@@ -31,7 +31,7 @@ export const BookCatalog = () => {
 
   const handleSave = async (formData: BookFormData) => {
     try {
-     await Api.post("/books", formData);
+      await Api.post("/books", formData);
       fetchData();
       handleCloseModal();
     } catch (error) {
@@ -41,28 +41,10 @@ export const BookCatalog = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      const confirmResult = await Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      });
-
-      if (confirmResult.isConfirmed) {
-        const result = await Api.delete(`/books/${id}`);
-        Swal.fire("Deleted!", result.data.message, "success");
-        setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
-      }
+      const result = await Api.delete(`/books/${id}`);
+      setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
     } catch (error) {
       errorHandler(error as Error);
-      Swal.fire(
-        "Error!",
-        "Something went wrong while deleting the book.",
-        "error"
-      );
     }
   };
 
