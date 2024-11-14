@@ -41,7 +41,7 @@ export const BookCatalog = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      const result = await Api.delete(`/books/${id}`);
+      await Api.delete(`/books/${id}`);
       setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
       toast.success("Successfully deleted");
     } catch (error) {
