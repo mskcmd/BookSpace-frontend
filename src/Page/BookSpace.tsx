@@ -5,7 +5,7 @@ import { BookCard } from "../Components/BookCard";
 import { BookForm } from "../Components/BookForm";
 import errorHandler from "../utils/errorHnadle";
 import Api from "../utils/axios";
-import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 export const BookCatalog = () => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -43,6 +43,7 @@ export const BookCatalog = () => {
     try {
       const result = await Api.delete(`/books/${id}`);
       setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
+      toast.success("Successfully deleted");
     } catch (error) {
       errorHandler(error as Error);
     }
