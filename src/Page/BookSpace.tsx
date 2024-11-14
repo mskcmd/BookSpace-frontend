@@ -32,6 +32,7 @@ export const BookCatalog = () => {
   const handleSave = async (formData: BookFormData) => {
     try {
       await Api.post("/books", formData);
+      toast.success("Book Added Successfully");
       fetchData();
       handleCloseModal();
     } catch (error) {
